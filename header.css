@@ -3,7 +3,6 @@
       padding: 0;
       background-color: #0d0d0d;
       font-family: 'Arial', sans-serif;
-
     }
 
         .header {
@@ -19,6 +18,11 @@
             max-width: 180px;
             border-radius: 5px;
         }
+
+	#wallet-address {
+	    display: inline;
+	}
+
 
         .connect-wallet-button {
             background-color: #2E88E8;
@@ -62,6 +66,10 @@
         .logo {
             max-width: 150px;
         }
+
+	#wallet-address {
+	    display: none;
+	}
 
 }
 
