@@ -1,0 +1,221 @@
+    th, td {
+		padding: 8px;
+		color:white;
+		margin: auto;
+    }
+
+#bridge-swap{
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	    margin-left:auto;
+	    margin-right:auto;
+            background-color: #1e1e1e;
+            width: 600px;
+            height: 100px;
+            text-align: center;
+            border-radius: 20px;
+   	    font-weight:bold;	
+            padding:30px;	
+	}
+
+
+    .content-container {
+      text-align: center;
+      border-radius: 50%;
+      overflow: hidden; /* Ensure content stays within the rounded container */
+      box-shadow: 0 0 15px #4a9dc3; /* 9e7899*/
+      width: 100px; /* Set your desired width */
+      height: 100px; /* Set your desired height */
+      display: inline-block; /* Make it an inline block */
+position: relative;
+    }
+#to-div {
+      box-shadow: 0 0 15px #9e7899;
+}
+
+    .chain-logo {
+
+      padding: 10px;
+      display: block; /* To center the image within the cell */
+      margin: auto;
+            width: 30%;
+            height: 30%;
+    }
+
+
+    .content-container img {
+      padding: 10px;
+      display: block;
+      margin: auto;
+  margin-top: 10px; 
+    }
+
+.coin-holder{
+      font-size: 70%;
+  width: 100%; /* Ensure full width */
+  position: absolute; /* Position the text absolutely */
+  bottom: 8px; /* Adjust the bottom spacing */
+}
+
+    .chain-select {
+      width: 60%;
+      padding: 10px;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      outline: none;
+      background-color: #1e1e1e;
+      color: white; /* Changed text color for better visibility */
+      font-size: 16px;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+
+    .chain-select::-ms-expand {
+      display: none; /* Remove default arrow in IE10 and IE11 */
+    }
+
+    .select-container {
+      position: relative;
+    }
+
+
+    #asset {
+      width: 80%;
+      padding: 10px;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      outline: none;
+      background-color: #1e1e1e;
+      color: white; /* Changed text color for better visibility */
+      font-size: 16px;
+      font-weight: bold;
+      box-sizing: border-box;
+      margin: 20px auto;
+    }
+
+    select:focus + #select-label, select:valid + #select-label {
+      top: -5px;
+      font-size: 12px;
+      color: #3498db;
+    }
+
+    #select-label {
+      position: absolute;
+      top: 14px;
+      left: 38px;
+      font-size: 16px;
+      color: #666;
+      transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+      pointer-events: none;
+    }
+
+    .withdraw-container {
+      text-align: center;
+    }
+
+    .input-container {
+      position: relative;
+      width: 90%;
+      margin: 20px auto;
+    }
+
+    input,textarea {
+      width: calc(100% - 10px - 30px); /* Adjusted width to accommodate the "Max" button */
+      padding: 10px;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      outline: none;
+      background-color: transparent;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 8px;
+      display: inline-block;
+      box-sizing: border-box;
+    }
+
+    .max-button {
+      position: absolute;
+      right: 0;
+      top: 8px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      padding: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    label {
+      position: absolute;
+      top: 14px;
+      left: 200px;
+      font-size: 16px;
+      color: #666;
+      transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+      pointer-events: none;
+    }
+
+    input:focus + #input-label, input:not(:placeholder-shown) + #input-label {
+      top: 2px;
+      font-size: 12px;
+      color: #3498db;
+    }
+
+    textarea:focus + #input-label, textarea:not(:placeholder-shown) + #input-label {
+      top: 2px;
+      font-size: 12px;
+      color: #3498db;
+    }
+
+    .balance {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+
+
+
+    #input-label {
+      position: absolute;
+      top: 14px;
+      left: 10px;
+      font-size: 16px;
+      color: #666;
+      transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+      pointer-events: none;
+    }
+
+
+
+	#swap-btn{
+		background-color: #F50870FF;
+		color: #fff;
+		border: none;
+		border-radius: 15px;
+		padding: 1% 2%;
+		font-size:140%;
+		cursor: pointer;
+		font-weight:bold;
+		width:190px;
+		height:50px;
+	}
+
+        @media only screen and (max-width: 850px)
+	{
+
+	#bridge-swap{
+            width: 80%;
+	}
+
+	    .chain-select {
+      		width: 80%;
+	}
+
+    #select-label {
+      left: 21px;
+	}
+
+}

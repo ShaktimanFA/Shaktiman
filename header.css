@@ -1,0 +1,68 @@
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0d0d0d;
+      font-family: 'Arial', sans-serif;
+
+    }
+
+        .header {
+            background-color: #1e1e1e; 
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+        }
+
+        .logo {
+            max-width: 180px;
+            border-radius: 5px;
+        }
+
+        .connect-wallet-button {
+            background-color: #2E88E8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+#connect-wallet, #disconnect-wallet {
+           background-color: #F50870FF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+#disconnect-wallet {
+           background-color: grey;
+}
+
+#notification {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    color: white;
+    background-color: #333;
+    width: 50%;
+    margin: 10px auto;
+    border-radius: 10px;
+    position: relative;
+}
+
+
+@media only screen and (max-width: 850px) {
+
+        .logo {
+            max-width: 150px;
+        }
+
+}
+
+
