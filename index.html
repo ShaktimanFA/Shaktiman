@@ -8,7 +8,25 @@
     <link rel="stylesheet" type="text/css" href="header.css">
     <link rel="stylesheet" type="text/css" href="body.css">
     <link rel="stylesheet" type="text/css" href="footer.css">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-601REXD6Y8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-601REXD6Y8');
+</script>
 <style>
+@media only screen and (max-width: 850px) {
+
+	#wallet-address {
+	    display: none;
+	}
+
+}
+
 </style>
 </head>
 <body>
@@ -239,7 +257,6 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
         document.getElementById("wallet-address").textContent = "Wallet Address : " + walletAddress;
         document.getElementById('disconnect-wallet').style.display = 'inline';
         document.getElementById('connect-wallet').style.display = 'none';
-
 
         // Fetch and display BNB balance
         balance = await web3.eth.getBalance(accounts[0]);
