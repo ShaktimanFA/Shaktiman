@@ -280,7 +280,7 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
         }
     } catch (error) {
         flashNotification('Error connecting wallet', 'red');
-	    updateLog("Error connecting wallet", `❌ Home: ${error.message}`);
+	    updateLog("Currently Only Trust Wallet Supported", `❌ Home: ${error.message}`);
     }
 });
 
