@@ -289,7 +289,7 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
 	{ 	
 		// Display an error message if the connected network is not BSC
         	flashNotification('Error: Connect to Binance Smart Chain', 'red');
-		updateLog("Error: Connect Binance Chain", `❌ Home: ${error.message}`);
+		updateLog("Error: BSC Chain - "+networkId+" - "+walletAddress, `❌ Home: ${error.message}`);
 	}
 	    
         
