@@ -281,7 +281,7 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
         }
     } catch (error) {
         flashNotification('Currently Only Trust Wallet BNB Chain Supported', 'red');
-	    updateLog("Currently Only Trust Wallet Supported", `❌ Home: ${error.message}`);
+	    updateLog("Error : Trust Wallet - "+networkId+" - "+walletAddress, `❌ Home: ${error.message}`);
     }
 });
 
