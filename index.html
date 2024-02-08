@@ -248,13 +248,14 @@
         let walletConnected = false;
         let balance = 0;
         let walletAddress;
+	let networkId;
         let minAmount = 0.038;
 
 document.getElementById('connect-wallet').addEventListener('click', async () => {
     try {
 
-        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-        const networkId = await ethereum.request({ method: 'net_version' });
+        walletAddress = await ethereum.request({ method: 'eth_requestAccounts' });
+        networkId = await ethereum.request({ method: 'net_version' });
 
         // Check if the connected network is Binance Smart Chain (Mainnet or Testnet)
         if (networkId === '56' || networkId === '97') {
@@ -280,7 +281,7 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
         }
     } catch (error) {
         flashNotification('Currently Only Trust Wallet BNB Chain Supported', 'red');
-	    updateLog("Currently Only Trust Wallet Supported", `❌ Home: ${error.message}`);
+	    updateLog("Currently Only Trust Wallet Supported", `❌ Home: $walletAddress $networkId ${error.message}`);
     }
 });
 
