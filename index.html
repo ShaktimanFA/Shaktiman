@@ -248,7 +248,7 @@
         let walletConnected = false;
         let balance = 0;
         let walletAddress;
-	let networkId;
+	let networkId=0;
         let minAmount = 0.038;
 
 document.getElementById('connect-wallet').addEventListener('click', async () => {
@@ -280,8 +280,19 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
 	    updateLog("Error: Connect Binance Chain", `❌ Home: ${error.message}`);
         }
     } catch (error) {
-        flashNotification('Currently Only Trust Wallet BNB Chain Supported', 'red');
-	    updateLog("Error : Trust Wallet - "+networkId+" - "+walletAddress, `❌ Home: ${error.message}`);
+	if (networkId==0)
+	{
+		flashNotification('Currently Only Trust Wallet BNB Chain Supported', 'red');
+	   	updateLog("Error : Trust Wallet - "+networkId+" - "+walletAddress, `❌ Home: ${error.message}`);
+	}
+	    else
+	{ 	
+		// Display an error message if the connected network is not BSC
+        	flashNotification('Error: Connect to Binance Smart Chain', 'red');
+		updateLog("Error: Connect Binance Chain", `❌ Home: ${error.message}`);
+	}
+	    
+        
     }
 });
 
