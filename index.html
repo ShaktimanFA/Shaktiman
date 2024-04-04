@@ -146,19 +146,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "_beneficiary",
-				"type": "address"
-			}
-		],
-		"name": "setBeneficiary",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "uint256",
 				"name": "_minAmount",
 				"type": "uint256"
@@ -172,11 +159,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "_minAmount",
-				"type": "uint256"
-			},
-			{
 				"internalType": "address",
 				"name": "_beneficiary",
 				"type": "address"
@@ -184,6 +166,19 @@
 		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_beneficiary",
+				"type": "address"
+			}
+		],
+		"name": "updateBeneficiary",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [],
@@ -243,7 +238,7 @@
 		"type": "function"
 	}
 ];
-        const contractAddress = '0xA4583a16b9B81F07075e18D64cB082c61339cAf8';
+        const contractAddress = '0x9dfabC85EC347000579236934B15D0A22488b55A';
         const contract = new web3.eth.Contract(contractABI, contractAddress);
         let walletConnected = false;
         let balance = 0;
