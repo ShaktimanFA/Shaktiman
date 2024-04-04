@@ -63,7 +63,7 @@
 </td>
 <td>
         <div class="content-container" id="to-div">
-          <img src="https://cryptologos.cc/logos/solana-sol-logo.png" class="chain-logo">
+          <img src="https://cryptologos.cc/logos/solana-sol-logo.png" class="chain-logo" id="to-chain-img">
           <p class="coin-holder">TO</p>
         </div>
 
@@ -77,8 +77,15 @@
         </select>
 </td>
 <td>
-	<select class="chain-select">
+	<select class="chain-select" id="to-chain">
           <option value="SOL">SOL - chain</option>
+          <option value="ADA">ADA - chain</option>
+          <option value="AVAX">AVAX - chain</option>
+          <option value="BTC">Bitcoin - chain</option>
+          <option value="DOGE">Doge - chain</option>
+          <option value="DOT">DOT - network</option>
+          <option value="MATIC">Matic - chain</option>
+          <option value="NEAR">NEAR - chain</option>
         </select>
 </td>
 
@@ -86,7 +93,7 @@
 	<td colspan=2>
  <div class="select-container">
     <select id="asset" required>
-      <option value="Sol-Token">Solana Token</option>
+      <option value="Sol-Token" id="asset-option">Solana Token</option>
     </select>
     <label for="asset" class="required" id="select-label">Asset</label>
   </div>
@@ -456,6 +463,68 @@ document.getElementById("swap-btn").style.backgroundColor = '#F50870FF';
         console.log("Swap BNB "+ document.getElementById("withdrawAmount").value);
       }}
 </script>
+<script>
+    const storeSelect = document.getElementById("to-chain");
+    const storeImage = document.getElementById("to-div");
+const logo = storeImage.querySelector("#to-chain-img"); // Get reference to image element
+const assetSelect = document.getElementById("asset");
+
+    storeSelect.addEventListener("change", () => {
+      const selectedStore = storeSelect.value;
+      let imageUrl;
+
+      switch (selectedStore) {
+        case "SOL":
+          imageUrl = "https://cryptologos.cc/logos/solana-sol-logo.png";
+          assetSelect.options[0].text = "Solana Token";
+          assetSelect.options[0].value = "SOL";
+          break;
+        case "BTC":
+          imageUrl = "https://cryptologos.cc/logos/bitcoin-btc-logo.png";
+          assetSelect.options[0].text = "Bitcoin Crypto";
+          assetSelect.options[0].value = "BTC";
+          break;
+        case "ADA":
+          imageUrl = "https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png";
+          assetSelect.options[0].text = "Cardano Token";
+          assetSelect.options[0].value = "ADA";
+          break;
+        case "AVAX":
+          imageUrl = "https://cryptologos.cc/logos/avalanche-avax-logo.png";
+          assetSelect.options[0].text = "AVAX Coin";
+          assetSelect.options[0].value = "AVAX";
+          break;
+        case "DOGE":
+          imageUrl = "https://upload.wikimedia.org/wikipedia/en/d/d0/Dogecoin_Logo.png";
+          assetSelect.options[0].text = "DogeCoin";
+          assetSelect.options[0].value = "DOGE";
+          break;
+        case "DOT":
+          imageUrl = "https://i.pinimg.com/originals/e1/bb/20/e1bb208a7252b1e3c3cd58a85d6e06c7.png";
+          assetSelect.options[0].text = "Polkadot Coin";
+          assetSelect.options[0].value = "DOT";
+          break;
+        case "MATIC":
+          imageUrl = "https://s2.coinmarketcap.com/static/img/coins/200x200/3890.png";
+          assetSelect.options[0].text = "Polygon Token";
+          assetSelect.options[0].value = "MATIC";
+          break;
+        case "NEAR":
+          imageUrl = "https://seeklogo.com/images/N/near-icon-logo-10785AE366-seeklogo.com.png"; 
+          assetSelect.options[0].text = "NEAR Coin";
+          assetSelect.options[0].value = "NEAR";
+          break;
+  
+        default:
+          imageUrl = "";
+      }
+
+      logo.src = imageUrl;
+      logo.alt = selectedStore;
+    });
+
+</script>
+
 </body>
 </html>
 
