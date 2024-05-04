@@ -83,6 +83,7 @@
           <option value="AVAX">AVAX - chain</option>
           <option value="opBNB">opBNB - crypto</option>
           <option value="BTC">Bitcoin - chain</option>
+  	  <option value="ETH">Ethereum - chain</option>
           <option value="DOGE">Doge - chain</option>
           <option value="DOT">DOT - network</option>
           <option value="MATIC">Matic - chain</option>
@@ -484,6 +485,11 @@ const assetSelect = document.getElementById("asset");
           imageUrl = "https://cryptologos.cc/logos/bitcoin-btc-logo.png";
           assetSelect.options[0].text = "Bitcoin Crypto";
           assetSelect.options[0].value = "BTC";
+          break;
+	case "ETH":
+          imageUrl = "https://cryptologos.cc/logos/ethereum-eth-logo.png";
+          assetSelect.options[0].text = "Ethereum Crypto";
+          assetSelect.options[0].value = "ETH";
           break;
         case "ADA":
           imageUrl = "https://cdn4.iconfinder.com/data/icons/crypto-currency-and-coin-2/256/cardano_ada-512.png";
