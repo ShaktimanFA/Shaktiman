@@ -79,6 +79,9 @@
 <td>
 	<select class="chain-select" id="to-chain">
           <option value="SOL">SOL - chain</option>
+	  <option value="TON">Ton - chain</option>
+	  <option value="SUI">Sui - chain</option>
+	  <option value="APT">Aptos - chain</option>
           <option value="ADA">ADA - chain</option>
           <option value="AVAX">AVAX - chain</option>
           <option value="opBNB">opBNB - crypto</option>
@@ -496,6 +499,22 @@ const assetSelect = document.getElementById("asset");
           assetSelect.options[0].text = "Cardano Token";
           assetSelect.options[0].value = "ADA";
           break;
+        case "TON":
+          imageUrl = "https://cryptologos.cc/logos/toncoin-ton-logo.png";
+          assetSelect.options[0].text = "TonCoin";
+          assetSelect.options[0].value = "TON";
+          break;
+        case "SUI":
+          imageUrl = "https://assets.crypto.ro/logos/sui-sui-logo.png";
+          assetSelect.options[0].text = "SUI Token";
+          assetSelect.options[0].value = "SUI";
+          break;
+        case "APT":
+          imageUrl = "https://aptosfoundation.org/brandbook/logomark/PNG/Aptos_mark_WHT.png";
+          assetSelect.options[0].text = "Aptos Token";
+          assetSelect.options[0].value = "APT";
+          break;
+		      
         case "opBNB":
           imageUrl = "https://img.cryptorank.io/coins/op_bnb1687420235160.png";
           assetSelect.options[0].text = "opBNB Crypto";
