@@ -284,21 +284,15 @@ document.getElementById('swap-btn').addEventListener('click', async () => {
 try {
 		Record();
 		//updateLog(walletAddress,'✅ 1 - '+document.getElementById("withdrawAmount").value+' BNB');
-	}
 
 	//btnProcess(false);
 	
-        } }catch (error) {
+         }catch (error) {
 	        flashNotification(error.message, 'red');
 		//btnProcess(false);
 		//updateLog(walletAddress,'❌ - '+document.getElementById("withdrawAmount").value+' BNB - '+error.message);
 
 		}
-        }
-
-}
-else
-        flashNotification("Error Contact Support", 'blue');
         
 });	
 
