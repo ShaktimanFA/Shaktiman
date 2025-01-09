@@ -203,6 +203,18 @@ position: relative;
 		height:50px;
 	}
 
+	#search-btn{
+		background-color: #F50870FF;
+		color: #fff;
+		border: none;
+		border-radius: 15px;
+		padding: 1% 2%;
+		font-size:140%;
+		cursor: pointer;
+		font-weight:bold;
+		width:190px;
+		height:50px;
+	}
         @media only screen and (max-width: 850px)
 	{
 
