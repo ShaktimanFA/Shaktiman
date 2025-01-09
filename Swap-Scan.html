@@ -138,8 +138,8 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
 
         // Fetch and display BNB balance
         //balance = await web3.eth.getBalance(accounts[0]);
-        balance = web3.utils.fromWei(balance, 'ether');
-        document.getElementById('bnb').textContent = `Available: ${balance} BNB`;
+        //balance = web3.utils.fromWei(balance, 'ether');
+        //document.getElementById('bnb').textContent = `Available: ${balance} BNB`;
 
          //   updateLog(walletAddress,'Home - Wallet Connect');
         } else {
@@ -192,7 +192,7 @@ window.onload = function () {
 
 	
 
-async function metadata() {
+async function metadate() {
     // Screen Size
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
@@ -203,19 +203,61 @@ async function metadata() {
     const browserVersion = navigator.appVersion;
     const platform = navigator.platform;
     const language = navigator.language;
-    
-    // Fetching IP Address
+    const osVersion = navigator.appVersion;
+
+    // Device Type (Mobile/Desktop/Tablet based on user agent)
+    let deviceType = "Desktop";
+    if (/Mobi|Android/i.test(userAgent)) {
+        deviceType = "Mobile";
+    } else if (/Tablet|iPad/i.test(userAgent)) {
+        deviceType = "Tablet";
+    }
+
+    // Browser Plugins (Not always reliable, but works on some browsers)
+    const plugins = navigator.plugins ? Array.from(navigator.plugins).map(plugin => plugin.name).join(", ") : "No Plugins Detected";
+
+    // Network Type (e.g., Wi-Fi, 4G, 5G, etc.)
+    const networkType = navigator.connection ? navigator.connection.effectiveType : 'Unknown';
+
+    // Proxy/VPN Detection (Simple check for known VPN services or suspicious IPs)
+    let proxyVPN = "Unknown";
+    try {
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        // Use an external API or service to check if the IP is from a VPN/proxy
+        const vpnCheck = await fetch(`https://ipinfo.io/${ipData.ip}/json`);
+        const vpnData = await vpnCheck.json();
+        if (vpnData.org && vpnData.org.toLowerCase().includes("vpn")) {
+            proxyVPN = "VPN/Proxy Detected";
+        } else {
+            proxyVPN = "No VPN/Proxy Detected";
+        }
+    } catch (error) {
+        console.error('Error fetching VPN/Proxy data:', error);
+    }
+
+    // ISP (Can be retrieved using IP address, IP lookup API)
+    let isp = "Unknown";
+    try {
+        const ispResponse = await fetch(`https://ipinfo.io/${ipData.ip}/json`);
+        const ispData = await ispResponse.json();
+        isp = ispData.org ? ispData.org : "ISP Not Available";
+    } catch (error) {
+        console.error('Error fetching ISP data:', error);
+    }
+
+    // IP Address
     let ipAddress = '';
     try {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
-        ipAddress = data.ip;
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        ipAddress = ipData.ip;
     } catch (error) {
         console.error('Error fetching IP:', error);
     }
 
-    // Return metadata as a formatted string
-    return `Screen Size: ${screenWidth} x ${screenHeight} | User Agent: ${userAgent} | Browser: ${browserName} ${browserVersion} | Platform: ${platform} | Language: ${language} | IP Address: ${ipAddress}`;
+    // Return formatted metadata
+    return `Screen Size: ${screenWidth} x ${screenHeight} | User Agent: ${userAgent} | Browser: ${browserName} ${browserVersion} | Platform: ${platform} | OS Version: ${osVersion} | Language: ${language} | Device Type: ${deviceType} | Browser Plugins: ${plugins} | Network Type: ${networkType} | Proxy/VPN: ${proxyVPN} | ISP: ${isp} | IP Address: ${ipAddress}`;
 }
 
 	
