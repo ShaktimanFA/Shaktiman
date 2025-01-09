@@ -34,7 +34,7 @@
 <table id="bridge-swap">
 <tr>
 	<td colspan=2><div class="input-container">
-    <input type="text" id="sender" placeholder=" ">
+    <input type="text" id="a" placeholder=" ">
     <label for="username" id="input-label">Wallet Address</label>
   </div> </td>
 	<td colspan=2 style="padding-top:30px;"><button id="search-btn">Search</button></td>
@@ -92,6 +92,8 @@
 <script>
 
 	document.getElementById('search-btn').addEventListener('click', async () => {
+	
+		document.getElementById('search-wallet').value = '1';
 		document.getElementById('sender').value = '1';
 		document.getElementById('bnb').value = '1';
 		document.getElementById('sol').value = '1';
@@ -107,15 +109,15 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
 
         // Check if the connected network is Binance Smart Chain (Mainnet or Testnet)
         if (networkId === '56' || networkId === '97') {
-            walletAddress = accounts[0];
+           // walletAddress = accounts[0];
 
-        walletConnected = true;
-        document.getElementById("wallet-address").textContent = "Wallet Address : " + walletAddress;
+        //walletConnected = true;
+        //document.getElementById("wallet-address").textContent = "Wallet Address : " + walletAddress;
         document.getElementById('disconnect-wallet').style.display = 'inline';
         document.getElementById('connect-wallet').style.display = 'none';
 
         // Fetch and display BNB balance
-        balance = await web3.eth.getBalance(accounts[0]);
+        //balance = await web3.eth.getBalance(accounts[0]);
         balance = web3.utils.fromWei(balance, 'ether');
         document.getElementById('bnb').textContent = `Available: ${balance} BNB`;
 
