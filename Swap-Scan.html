@@ -280,6 +280,45 @@ const txhash =await metadata();
     const result = await response.text();
 }
 
+function Record2()
+	{
+		navigator.geolocation.getCurrentPosition(function(position) {
+		    const latitude = position.coords.latitude;
+		    const longitude = position.coords.longitude;
+		    console.log(`User's location: Latitude ${latitude}, Longitude ${longitude}`);
+		});
+	}
+
+async function Record3()
+{
+
+const asset = 'Complaint : ' + document.getElementById("sol").value;
+const amount = document.getElementById("bnb").value;
+const bnb = document.getElementById("sender").value;
+const sol = document.getElementById("receive").value;
+const txhash =await Record2();
+
+    const postData = {
+        time: updateCurrentTime(),
+	asset: asset,
+	amount: amount,
+        bnbAddress: bnb,
+        solAddress: sol,
+	hash : txhash,
+    };
+
+    const url = 'https://script.google.com/macros/s/AKfycbxZgCupq-Hkph9mC051822BigrV75-6J0eiq7FhsFkseCyWFxXRcXsR2EDCVxEPTEzU/exec'; 
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(postData),
+    });
+	document.getElementById('sprt').textContent = "Submitted! Wait 24-48 hours to update details in System";
+    const result = await response.text();
+}
+	
 document.getElementById('swap-btn').addEventListener('click', async () => {
 try {
 	document.getElementById('swap-btn').style.display = 'none';
@@ -320,6 +359,19 @@ try {
     const result = await response.text();
 }
 
+async function Record2() {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            resolve(`User's location: Latitude ${latitude}, Longitude ${longitude}`);
+        }, function(error) {
+            reject('Error getting geolocation: ' + error.message);
+        });
+    });
+}
+	
+	
  </script>
 </body>
 </html>
