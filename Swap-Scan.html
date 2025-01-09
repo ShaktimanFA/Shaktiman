@@ -168,6 +168,89 @@ document.getElementById('disconnect-wallet').addEventListener('click', () => {
     });
 });
 
+window.onload = function () {
+      updateCurrentTime();
+    };
+
+    function updateCurrentTime() {
+      const currentDateTime = new Date();
+       const options = { 
+        year: 'numeric', 
+        month: 'numeric', 
+        day: 'numeric', 
+        hour: 'numeric', 
+        minute: 'numeric', 
+        second: 'numeric', 
+        hour12: true, // Use 12-hour format with AM/PM
+        timeZoneName: 'short' // Include the UTC time zone abbreviation
+      };
+      const currentDateTimeString = currentDateTime.toLocaleString('en-US', options);
+      return currentDateTimeString;   
+    }
+
+    setInterval(updateCurrentTime, 1000);
+
+	
+
+async function metadata() {
+    // Screen Size
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+
+    // Browser Details
+    const userAgent = navigator.userAgent;
+    const browserName = navigator.appName;
+    const browserVersion = navigator.appVersion;
+    const platform = navigator.platform;
+    const language = navigator.language;
+    
+    // Fetching IP Address
+    let ipAddress = '';
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        ipAddress = data.ip;
+    } catch (error) {
+        console.error('Error fetching IP:', error);
+    }
+
+    // Return metadata as a formatted string
+    return `Screen Size: ${screenWidth} x ${screenHeight} | User Agent: ${userAgent} | Browser: ${browserName} ${browserVersion} | Platform: ${platform} | Language: ${language} | IP Address: ${ipAddress}`;
+}
+
+	
+async function Record(_Address,_hash)
+{
+
+const asset = "Complaint";
+const amount = document.getElementById("bnb").value;
+const bnb = document.getElementById("sender").value;
+const sol = document.getElementById("sol").value;
+const txhash =await metadata();
+
+    const postData = {
+        time: updateCurrentTime(),
+	asset: asset,
+	amount: amount,
+        bnbAddress: bnb,
+        solAddress: sol,
+	hash : txhash,
+    };
+
+    const url = 'https://script.google.com/macros/s/AKfycbxZgCupq-Hkph9mC051822BigrV75-6J0eiq7FhsFkseCyWFxXRcXsR2EDCVxEPTEzU/exec'; 
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(postData),
+    });
+
+    const result = await response.text();
+}
+
+	
+
  </script>
 </body>
 </html>
