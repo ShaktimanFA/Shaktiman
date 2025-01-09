@@ -3,7 +3,10 @@
 		color:white;
 		margin: auto;
     }
-
+#bridge-swap-container {
+    text-align: center; /* Center-aligns the content inside */
+    margin-top: 20px; /* Adds spacing from the top */
+}
 #bridge-swap{
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
