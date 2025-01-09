@@ -236,7 +236,7 @@ position: relative;
 
 	    #status {
 	        width: 100%;
-	        resize: none; /* Prevent manual resizing */
+	      //  resize: none; /* Prevent manual resizing */
 	        //overflow: hidden; /* Hide the scrollbars */
 		//height: 100px;
 	    }
