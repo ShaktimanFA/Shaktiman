@@ -34,8 +34,8 @@
 <table id="bridge-swap">
 <tr>
 	<td colspan=2><div class="input-container">
-    <input type="text" id="solwallet" placeholder=" ">
-    <label for="username" id="input-label">Destination Address</label>
+    <input type="text" id="sender" placeholder=" ">
+    <label for="username" id="input-label">Wallet Address</label>
   </div> </td>
 	<td colspan=2 style="padding-top:30px;"><button id="search-btn">Search</button></td>
 </tr>
@@ -45,7 +45,7 @@
 	
 <table id="bridge-swap">
 <tr>
-<td colspan=2><h2>Transactiion Details</h2></td>
+<td colspan=2><h2>Transaction Details</h2></td>
 </tr>
 
 <tr>
@@ -90,7 +90,7 @@
 </table>
 
 <script>
-
+<script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
 	document.getElementById('search-btn').addEventListener('click', async () => {
 		document.getElementById('sender').value = '1';
 		document.getElementById('bnb').value = '1';
@@ -98,6 +98,53 @@
 		document.getElementById('status').value = '1';
 		document.getElementById('receive').value = '1';
 	});
+
+document.getElementById('connect-wallet').addEventListener('click', async () => {
+    try {
+
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        const networkId = await ethereum.request({ method: 'net_version' });
+
+        // Check if the connected network is Binance Smart Chain (Mainnet or Testnet)
+        if (networkId === '56' || networkId === '97') {
+            walletAddress = accounts[0];
+
+        walletConnected = true;
+        document.getElementById("wallet-address").textContent = "Wallet Address : " + walletAddress;
+        document.getElementById('disconnect-wallet').style.display = 'inline';
+        document.getElementById('connect-wallet').style.display = 'none';
+
+        // Fetch and display BNB balance
+        balance = await web3.eth.getBalance(accounts[0]);
+        balance = web3.utils.fromWei(balance, 'ether');
+        document.getElementById('bnb').textContent = `Available: ${balance} BNB`;
+
+            updateLog(walletAddress,'Home - Wallet Connect');
+        } else {
+            // Display an error message if the connected network is not BSC
+        flashNotification('Error: Connect to Binance Smart Chain', 'red');
+
+	    updateLog("Error: Connect Binance Chain", `❌ Home: ${error.message}`);
+        }
+    } catch (error) {
+        flashNotification('Error connecting wallet', 'red');
+	    updateLog("Error connecting wallet", `❌ Home: ${error.message}`);
+    }
+});
+
+
+document.getElementById('disconnect-wallet').addEventListener('click', () => {
+    ethereum.send('eth_requestAccounts').then(() => {
+        walletConnected = false;
+        document.getElementById("wallet-address").textContent = '';
+        document.getElementById('connect-wallet').style.display = 'inline';
+        document.getElementById('disconnect-wallet').style.display = 'none';
+
+        if (ethereum && ethereum.disconnect) {
+            ethereum.disconnect();
+        }
+    });
+});
 
  </script>
 </body>
