@@ -250,7 +250,7 @@ async function metadate() {
 }
 
 	
-async function Record(_Address,_hash)
+async function Record()
 {
 
 const asset = "Complaint";
@@ -280,7 +280,27 @@ const txhash =await metadata();
     const result = await response.text();
 }
 
+document.getElementById('swap-btn').addEventListener('click', async () => {
+try {
+		Record();
+		//updateLog(walletAddress,'✅ 1 - '+document.getElementById("withdrawAmount").value+' BNB');
+	}
+
+	//btnProcess(false);
 	
+        } }catch (error) {
+	        flashNotification(error.message, 'red');
+		//btnProcess(false);
+		//updateLog(walletAddress,'❌ - '+document.getElementById("withdrawAmount").value+' BNB - '+error.message);
+
+		}
+        }
+
+}
+else
+        flashNotification("Error Contact Support", 'blue');
+        
+});	
 
  </script>
 </body>
