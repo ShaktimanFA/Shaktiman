@@ -238,7 +238,7 @@ position: relative;
 	        width: 100%;
 	      //  resize: none; /* Prevent manual resizing */
 	        //overflow: hidden; /* Hide the scrollbars */
-		height: 150px;
+		height: 150;
 	    }
         @media only screen and (max-width: 850px)
 	{
