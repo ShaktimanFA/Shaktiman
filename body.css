@@ -18,6 +18,21 @@
             padding:30px;	
 	}
 
+#tranx-details{
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	    margin-left:auto;
+	    margin-right:auto;
+            background-color: #1e1e1e;
+            width: 600px;
+            height: 100px;
+            text-align: center;
+            border-radius: 20px;
+   	    font-weight:bold;	
+            padding:30px;	
+	
+}
+
 
     .content-container {
       text-align: center;
