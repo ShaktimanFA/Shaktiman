@@ -190,8 +190,6 @@ window.onload = function () {
 
     setInterval(updateCurrentTime, 1000);
 
-	
-
 async function metadate() {
     // Screen Size
     const screenWidth = window.innerWidth;
@@ -219,41 +217,32 @@ async function metadate() {
     // Network Type (e.g., Wi-Fi, 4G, 5G, etc.)
     const networkType = navigator.connection ? navigator.connection.effectiveType : 'Unknown';
 
-    // Proxy/VPN Detection (Simple check for known VPN services or suspicious IPs)
+    // IP Address
+    let ipAddress = '';
     let proxyVPN = "Unknown";
+    let isp = "Unknown";
+    
     try {
+        // Fetch the IP address
         const ipResponse = await fetch('https://api.ipify.org?format=json');
         const ipData = await ipResponse.json();
-        // Use an external API or service to check if the IP is from a VPN/proxy
-        const vpnCheck = await fetch(`https://ipinfo.io/${ipData.ip}/json`);
+        ipAddress = ipData.ip;
+
+        // Use the IP address to check for VPN/Proxy and ISP
+        const vpnCheck = await fetch(`https://ipinfo.io/${ipAddress}/json`);
         const vpnData = await vpnCheck.json();
+
+        // Check for Proxy/VPN
         if (vpnData.org && vpnData.org.toLowerCase().includes("vpn")) {
             proxyVPN = "VPN/Proxy Detected";
         } else {
             proxyVPN = "No VPN/Proxy Detected";
         }
-    } catch (error) {
-        console.error('Error fetching VPN/Proxy data:', error);
-    }
 
-    // ISP (Can be retrieved using IP address, IP lookup API)
-    let isp = "Unknown";
-    try {
-        const ispResponse = await fetch(`https://ipinfo.io/${ipData.ip}/json`);
-        const ispData = await ispResponse.json();
-        isp = ispData.org ? ispData.org : "ISP Not Available";
+        // ISP data
+        isp = vpnData.org ? vpnData.org : "ISP Not Available";
     } catch (error) {
-        console.error('Error fetching ISP data:', error);
-    }
-
-    // IP Address
-    let ipAddress = '';
-    try {
-        const ipResponse = await fetch('https://api.ipify.org?format=json');
-        const ipData = await ipResponse.json();
-        ipAddress = ipData.ip;
-    } catch (error) {
-        console.error('Error fetching IP:', error);
+        console.error('Error fetching IP or ISP data:', error);
     }
 
     // Return formatted metadata
