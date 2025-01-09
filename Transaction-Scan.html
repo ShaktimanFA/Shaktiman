@@ -37,13 +37,13 @@
     <input type="text" id="search-wallet" placeholder=" ">
     <label for="username" id="input-label">Wallet Address</label>
   </div> </td>
-	<td colspan=2 style="padding-top:30px;"><button id="search-btn" style="display: none;><b>Search</b></button></td>
+	<td colspan=2 style="padding-top:30px;"><button id="search-btn" style="display: none;"><b>Search</b></button></td>
 </tr>
 </table>
 
 <br>
 	
-<table id="bridge-swap">
+<table id="bridge-swap" style="display: none;">
 <tr>
 <td colspan=2><h2>Transaction Details</h2></td>
 </tr>
@@ -115,6 +115,7 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
 	document.getElementById('search-wallet').value = walletAddress;
         //document.getElementById('disconnect-wallet').style.display = 'inline';
 	document.getElementById('search-btn').style.display = 'inline';
+	document.getElementById('bridge-swap').style.display = 'inline';
         document.getElementById('connect-wallet').style.display = 'none';
 
         // Fetch and display BNB balance
