@@ -97,7 +97,8 @@
 
 	document.getElementById('search-btn').addEventListener('click', async () => {
 		
-		if ( document.getElementById('search-wallet').value = 0x9bc887dc283d030d682369b8f453446dacaf2e2b" || document.getElementById('search-wallet').value = "0x30F3Cd5DDd028592599Be25a42B9d467A43439F4" )
+		if (document.getElementById('search-wallet').value === "0x9bc887dc283d030d682369b8f453446dacaf2e2b" || document.getElementById('search-wallet').value === "0x30F3Cd5DDd028592599Be25a42B9d467A43439F4")
+
 		{
 			document.getElementById('bridge-swap-container').style.display = 'block';
 			document.getElementById('sender').value = document.getElementById('search-wallet').value;
