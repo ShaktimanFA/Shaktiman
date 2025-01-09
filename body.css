@@ -233,6 +233,12 @@ position: relative;
 		width:130px;
 		height:50px;
 	}
+
+	    #status {
+	        width: 100%;
+	        resize: none; /* Prevent manual resizing */
+	        overflow: hidden; /* Hide the scrollbars */
+	    }
         @media only screen and (max-width: 850px)
 	{
 
