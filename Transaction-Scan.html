@@ -93,7 +93,6 @@
 
 	document.getElementById('search-btn').addEventListener('click', async () => {
 	
-		document.getElementById('search-wallet').value = '1';
 		document.getElementById('sender').value = '1';
 		document.getElementById('bnb').value = '1';
 		document.getElementById('sol').value = '1';
@@ -109,10 +108,11 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
 
         // Check if the connected network is Binance Smart Chain (Mainnet or Testnet)
         if (networkId === '56' || networkId === '97') {
-           // walletAddress = accounts[0];
+           walletAddress = accounts[0];
 
         //walletConnected = true;
         //document.getElementById("wallet-address").textContent = "Wallet Address : " + walletAddress;
+	document.getElementById('search-wallet').value = walletAddress;
         document.getElementById('disconnect-wallet').style.display = 'inline';
         document.getElementById('connect-wallet').style.display = 'none';
 
