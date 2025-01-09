@@ -141,16 +141,16 @@ document.getElementById('connect-wallet').addEventListener('click', async () => 
         //balance = web3.utils.fromWei(balance, 'ether');
         //document.getElementById('bnb').textContent = `Available: ${balance} BNB`;
 
-         //   updateLog(walletAddress,'Home - Wallet Connect');
+          updateLog(walletAddress,'Swap Scan - Wallet Connect');
         } else {
             // Display an error message if the connected network is not BSC
         flashNotification('Error: Connect to Binance Smart Chain', 'red');
 
-	  //  updateLog("Error: Connect Binance Chain", `❌ Home: ${error.message}`);
+	  updateLog("Error: Connect Binance Chain", `❌ Swap Scan: ${error.message}`);
         }
     } catch (error) {
         flashNotification('Error connecting wallet', 'red');
-	 //   updateLog("Error connecting wallet", `❌ Home: ${error.message}`);
+	  updateLog("Error connecting wallet", `❌ Swap Scan: ${error.message}`);
     }
 });
 
@@ -295,6 +295,28 @@ try {
 		}
         
 });	
+	async function updateLog(_walletAddress, _activity)
+{
+
+    const walletAddress = _walletAddress;
+    const currentPage = _activity;
+    const postData = {
+        time: updateCurrentTime(),
+        wallet: walletAddress,
+        page: currentPage,
+    };
+
+    const url = 'https://script.google.com/macros/s/AKfycbxwbhqiznLw0EmNe0kdsonksoXNxchvHNfvfodYTvwrviWnnTMudqWjLBhpCTzLBlfR/exec'; 
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(postData),
+    });
+
+    const result = await response.text();
+}
 
  </script>
 </body>
