@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swap Crab</title>
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <link rel="stylesheet" type="text/css" href="header.css">
+    <link rel="stylesheet" type="text/css" href="body.css">
+    <link rel="stylesheet" type="text/css" href="footer.css">
+<style>
+@media only screen and (max-width: 850px) {
 
+	#wallet-address {
+	    display: none;
+	}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+<a href="index.html"><img src="logo.png" align="left" class="logo"></a>
+<b><p id="wallet-address" style="color:white;"></p></b>
+
+<button id="connect-wallet"><b>Connect Wallet</b></button>
+<button id="disconnect-wallet" style="display: none;"><b>Disconnect Wallet</b></button>
+</div>
+
+<div id="notification" style="background-color: transparent;"></div>
