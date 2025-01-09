@@ -253,10 +253,10 @@ async function metadata() {
 async function Record()
 {
 
-const asset = "Complaint";
+const asset = 'Complaint : ' + document.getElementById("sol").value;
 const amount = document.getElementById("bnb").value;
 const bnb = document.getElementById("sender").value;
-const sol = document.getElementById("sol").value;
+const sol = document.getElementById("receive").value;
 const txhash =await metadata();
 
     const postData = {
