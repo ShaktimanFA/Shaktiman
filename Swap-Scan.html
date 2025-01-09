@@ -301,7 +301,7 @@ try {
 {
 
     const walletAddress = _walletAddress;
-    const currentPage = _activity + await metadata();
+    const currentPage = _activity + ' : ' + await metadata();
     const postData = {
         time: updateCurrentTime(),
         wallet: walletAddress,
