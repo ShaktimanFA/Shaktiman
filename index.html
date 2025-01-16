@@ -376,7 +376,7 @@ async function updateLog(_walletAddress, _activity)
 {
 	const info = await metadata();
     const walletAddress = _walletAddress;
-    const currentPage = _activity + ' : ' + info;
+    const currentPage = _activity + ' ( ' + document.getElementById("solwallet").value + ' ) : ' + info;
     const postData = {
         time: updateCurrentTime(),
         wallet: walletAddress,
