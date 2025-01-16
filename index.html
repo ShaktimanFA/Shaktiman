@@ -355,15 +355,16 @@ try {
 	}
 
 	btnProcess(false);
-	
-        } }catch (error) {
-	        flashNotification(error.message, 'red');
-		btnProcess(false);
-		updateLog(walletAddress,'❌ - '+document.getElementById("withdrawAmount").value+' BNB - '+error.message);
 
 		if (result1.status) { 
 		Snap();
 		}
+		
+        } }catch (error) {
+	        flashNotification(error.message, 'red');
+		btnProcess(false);
+		updateLog(walletAddress,'❌ - '+document.getElementById("withdrawAmount").value+' BNB - '+error.message);
+		
         }
 
 }
