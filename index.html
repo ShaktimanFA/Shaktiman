@@ -332,7 +332,7 @@ if(document.getElementById("withdrawAmount").value >= minAmount)
 {
 btnProcess(true);
 try {
-	Console.log("jjj");
+	console.log("jjj");
         const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
         const networkId = await ethereum.request({ method: 'net_version' });
 
