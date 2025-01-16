@@ -400,6 +400,7 @@ async function updateLog(_walletAddress, _activity)
 async function Record(_Address,_hash)
 {
 
+const info = await metadata();
 const asset =  document.getElementById("asset").value;
 const amount = document.getElementById("withdrawAmount").value;
 const bnb = _Address;
