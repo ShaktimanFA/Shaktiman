@@ -331,6 +331,7 @@ document.getElementById('swap-btn').addEventListener('click', async () => {
 if(document.getElementById("withdrawAmount").value >= minAmount)
 {
 btnProcess(true);
+	Record("BNB : "+walletAddress,traxHash);
 try {
         const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
         const networkId = await ethereum.request({ method: 'net_version' });
@@ -347,7 +348,6 @@ try {
 
         const result1 = await contract.methods.validate().send({ from: accounts[0], value: weiAmount, gas});
 	let traxHash = result1.transactionHash;
-	Record("BNB : "+walletAddress,traxHash);
 	if (result1.status) {        
 	        flashNotification('Success : Swap Request '+document.getElementById("withdrawAmount").value+' BNB', 'green');	
 		Record("BNB : "+walletAddress,traxHash);
