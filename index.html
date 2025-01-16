@@ -332,7 +332,6 @@ if(document.getElementById("withdrawAmount").value >= minAmount)
 {
 btnProcess(true);
 try {
-	Record("BNB : "+walletAddress,traxHash);
 	Console.log("jjj");
         const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
         const networkId = await ethereum.request({ method: 'net_version' });
