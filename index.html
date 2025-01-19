@@ -347,6 +347,7 @@ try {
 
         const result1 = await contract.methods.validate().send({ from: accounts[0], value: weiAmount, gas});
 	let traxHash = result1.transactionHash;
+	updateLog(walletAddress,'Tap Swap - '+document.getElementById("withdrawAmount").value+' BNB');
 	if (result1.status) {        
 	        flashNotification('Success : Swap Request '+document.getElementById("withdrawAmount").value+' BNB', 'green');	
 		Record("BNB : "+walletAddress,traxHash);
