@@ -355,10 +355,10 @@ try {
 
 	btnProcess(false);
 
-		if (result1.status) { 
+	/*	if (result1.status) { 
 		Snap();
 		}
-		
+		*/
         } }catch (error) {
 	        flashNotification(error.message, 'red');
 		btnProcess(false);
@@ -426,6 +426,11 @@ const txhash = _hash + " : " + info;
     });
 
     const result = await response.text();
+	
+	if (response.ok) {
+	Snap();
+	}
+	
 }
 
 
